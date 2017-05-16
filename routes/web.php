@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/', 'DashboardController@index')->name('dashboard.index');
+Route::resource('report', 'ReportController');
+
+Route::get('/hello', function () {
+    return view('hello');
 });
+

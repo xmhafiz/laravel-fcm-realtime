@@ -13,20 +13,12 @@
         <title>{{ env('APP_NAME', 'Laravel') }}</title>
         <!-- Bootstrap core CSS -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <!-- Custom styles for this template -->
-        <style type="text/css">
-            body {
-                background-color: #2196F3;
-                color: #fff;
-            }
-        </style>
     </head>
 
     <body>
-        <div class="container-fluid">
+        <div class="container">
             @yield('content')
         </div>
-        <script src="{{ asset('js/jquery.js') }}"></script>
         <script src="{{ asset('js/app.js') }}"></script>
         @yield('scripts')
     </body>

@@ -1,0 +1,42 @@
+/* extra */
+
+.list-group > .list-group-item {
+    background-color: #252830;
+    color: #fff;
+    border-color: #00B8D4;
+}
+
+.list-group-item h4{
+    color: #999;
+}
+
+hr {
+    border-color: #444;
+}
+
+h2 {
+    color: #888;
+}
+
+h3 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+/* dashboard */
+.panel-blue {
+    background: #448AFF;
+}
+.panel-green {
+    background: #1BC98E;
+}
+.panel-yellow {
+    background: #BA68C8;
+}
+.panel-red {
+    background: #FF5252;
+}
+
+.huge {
+    font-size: 40px;
+}
