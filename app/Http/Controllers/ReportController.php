@@ -51,7 +51,7 @@ class ReportController extends Controller
         $report = Report::create($request->all());
 
         // get total count
-        
+        // $total = $report->count();
 
         // send firebase notification
         $payload = [

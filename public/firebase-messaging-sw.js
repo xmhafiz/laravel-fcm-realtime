@@ -23,7 +23,7 @@ if (typeof importScripts == "function") {
 		console.log('[firebase-messaging-sw.js] Received background message ', payload);
 
 		// update dashboard
-		updateView(payload.data.item);
+		updateView(payload.data);
 	});
 }
 else {
@@ -33,7 +33,7 @@ else {
 	// listener on message receive forground
 	messaging.onMessage(function(payload) {
 		console.log("Message received. ", payload);
-		updateView(payload.data.item);
+		updateView(payload.data);
 	});
 
 	// request permission

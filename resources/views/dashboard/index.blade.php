@@ -3,9 +3,9 @@
 <div class="row">
 	<div class="col-md-12">
 		<h2>Dashboard</h2>
-		<p>Manage your every things here</p>
+		<p>Manage your everything here 💚</p>
 		<hr>
-		<h3>Overview <small>Today's Events</small></h3>
+		<h3>Overview</h3>
 		<div class="row">
 			<div class="col-md-4">
 				<div class="panel panel-blue">
@@ -121,7 +121,7 @@ function addToList(data, append = true) {
 	row += '<li class="list-group-item" id="row-' + data.id + '" style="display:none">';
 	row += '  <h4 class="list-group-item-heading">' + data.report_title + '</h4>';
 	row += '  <p class="list-group-item-text">' + data.address + '</p>';
-	row += '  <small class="list-group-item-text">' + data.created_at + '</small>';
+	row += '  <p class="list-group-item-text text-primary">' + data.created_at_formatted + '</p>';
 	row += '</li>';
 		
 		
@@ -139,7 +139,7 @@ function updateView(json) {
 	// this will be called by firebase setBackgroundMessageHandler method or messaging.onMessage
 	
 	// convert json string to object
-	var item = JSON.parse(json);
+	var item = JSON.parse(json.item);
 
 	var lat = parseFloat(item.latitude);
 	var lng = parseFloat(item.longitude);

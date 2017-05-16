@@ -14,4 +14,11 @@ class Report extends Model
     	'longitude',
     	'latitude',
     ];
+
+    protected $appends = ['created_at_formatted'];
+
+    public function getCreatedAtFormattedAttribute() 
+    {
+    	return date('l, j F Y, g:i a', strtotime($this->attributes['created_at']));
+    }
 }
