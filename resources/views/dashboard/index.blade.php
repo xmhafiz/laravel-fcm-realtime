@@ -151,6 +151,7 @@ function initMap() {
 function addMarkerAt(latitude, longitude) {
 	
 }
+
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7agwlerw2gHZVLp5wJCRHR1eKbQrs41k&callback=initMap"></script>
 @endsection

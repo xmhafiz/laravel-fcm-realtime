@@ -16,6 +16,10 @@ class ReportController extends Controller
         //
     }
 
+    public function userSubmit() {
+        return view('report.user_form');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

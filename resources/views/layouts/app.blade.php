@@ -12,7 +12,36 @@
 
         <title>{{ env('APP_NAME', 'Laravel') }}</title>
         <!-- Bootstrap core CSS -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <style type="text/css">
+
+            h2 {
+                color: #009688;
+            }
+
+            /* submit report - google map input */
+
+            .controls {
+                margin-top: 10px;
+                border: 1px solid transparent;
+                border-radius: 2px 0 0 2px;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                height: 32px;
+                outline: none;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            }
+
+            #pac-input {
+                background-color: #fff;
+                font-size: 15px;
+                font-weight: 300;
+                margin-left: 12px;
+                padding: 10 11px 10 13px;
+                text-overflow: ellipsis;
+                min-width: 300px;
+            }
+        </style>
     </head>
 
     <body>
