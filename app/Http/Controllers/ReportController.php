@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Report;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -16,10 +17,6 @@ class ReportController extends Controller
         //
     }
 
-    public function userSubmit() {
-        return view('report.user_form');
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -27,7 +24,7 @@ class ReportController extends Controller
      */
     public function create()
     {
-        //
+        return view('report.user_form');
     }
 
     /**
@@ -38,7 +35,17 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'report_title' => 'required',
+            'report_description' => 'required',
+            'address' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+        ];
+
+        $this->validate($request, $rules);
+
+        Report::create($request->all());
     }
 
     /**

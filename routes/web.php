@@ -13,7 +13,7 @@
 
 
 Route::get('/', 'DashboardController@index')->name('dashboard.index');
-Route::get('report/submit', 'ReportController@userSubmit');
+Route::get('report/submit', 'ReportController@create');
 Route::resource('report', 'ReportController');
 
 Route::get('/hello', function () {

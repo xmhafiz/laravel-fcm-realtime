@@ -15,10 +15,6 @@
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
         <style type="text/css">
 
-            h2 {
-                color: #009688;
-            }
-
             /* submit report - google map input */
 
             .controls {

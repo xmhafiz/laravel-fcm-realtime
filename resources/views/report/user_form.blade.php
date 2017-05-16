@@ -4,22 +4,22 @@
 <div class="row">
     <div class="col-md-12">
         <!-- put contents in panel -->
-        <h2><span class="glyphicon glyphicon-comment"></span> Submit Report</h2>
+        <h2 class="text-primary"><span class="glyphicon glyphicon-comment"></span> Submit Report</h2>
+        <span class="text-danger"><ul id="error-messages"></ul></span>
         <div class="panel panel-default">
             <div class="panel-body">
                 <form class="form-horizontal" method="post" action="{{ route('report.store') }}">
-                    {{ csrf_field() }}
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Title</label>
                         <div class="col-sm-8">
-                            <input type="text" name="report_title" class="form-control" placeholder="Enter Report Title" required>
+                            <input type="text" name="report_title" class="form-control" placeholder="What happenend?" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Report Description</label>
                         <div class="col-sm-8">
-                            <textarea name="report_description" class="form-control" rows="10" required placeholder="Enter Report Detail"></textarea>
+                            <input type="text" name="report_description" class="form-control" placeholder="Enter Details" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -37,17 +37,18 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Coordinate</label>
-                        <div class="col-sm-8">
-                            <input id="place-coordinate" type="text" name="coordinate" class="form-control" readonly>
-
-                            <input type="hidden" id="lat">
-                            <input type="hidden" id="lng">
+                        <div class="col-sm-4">
+                            <input type="text" id="lat" class="form-control" name="latitude" readonly placeholder="Latitude">
+                            <input type="text" id="lng" class="form-control" name="longitude" readonly placeholder="Longitude">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-6">
-                            <button type="submit" class="btn btn-success">Submit Now</button>
+                            <button type="submit" class="btn btn-primary">Submit Now</button>
                         </div>
+                    </div>
+                    <div class="alert alert-success" style="display:none">
+                      <strong>Thank you!</strong> Your report has been successfully submitted.
                     </div>
                 </form>
             </div>
@@ -126,14 +127,67 @@ function initMap() {
         infowindow.open(map, marker);
 
         // update textfield
-        var placeAddress = place.name, address;
-        var placeCoords = place.geometry.location.lat() + ',' + place.geometry.location.lng();
+        var placeAddress = place.name + ', '  + address;
 
-        $('#place-coordinate').val(placeCoords);
+        $('#lat').val(place.geometry.location.lat());
+        $('#lng').val(place.geometry.location.lng());
         $('#place-address').val(placeAddress);
 
     });
 }
+
+// processing submission
+$(document).ready(function() {
+    $('form').on('submit', function(e) {
+        e.preventDefault()
+
+        // clear state
+        $('#error-messages').empty();
+
+        // get submit url
+        var url = $(this).attr('action');
+
+        // setup form data
+        var formData = new FormData(this);
+        console.log(formData);
+
+        // send post
+        axios.post(url, formData)
+        .then(function(response){
+            // when success
+            $('.alert-success').show();
+
+            // reset form
+            $('form')[0].reset();
+
+            // debug
+            console.log('saved successfully');
+        })
+        .catch(function (error) {
+            // debug
+            console.log(error);
+
+            if (error.response) {
+                // bad request form
+                if (error.response.status == 422) {
+                    var errors = error.response.data;
+
+                    $(errors).each(function(i, row) {
+                        $('#error-messages').append('<li>' + row + '</li>');
+                    });
+                }
+            }
+        });
+    })
+
+    // hide success and error message on editing 
+    $(document).on("click","input[type='text']", function(){             
+        $('#error-messages').empty();
+        $('.alert-success').hide();
+    });
+})
+
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7agwlerw2gHZVLp5wJCRHR1eKbQrs41k&libraries=places&callback=initMap" async defer></script>
 
