@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Device;
+use App\Jobs\SendNotification;
 use App\Report;
 use Illuminate\Http\Request;
 
@@ -45,7 +47,23 @@ class ReportController extends Controller
 
         $this->validate($request, $rules);
 
-        Report::create($request->all());
+        // create report
+        $report = Report::create($request->all());
+
+        // get total count
+        
+
+        // send firebase notification
+        $payload = [
+            'message_type' => 'new_data',
+            'item' => $report,
+        ];
+
+        $devices = Device::all();
+
+        $devices->each(function( $device) use ($payload) {
+            dispatch(new SendNotification($device->firebase_token, $payload));
+        });
     }
 
     /**

@@ -13,4 +13,5 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('reports', 'Api/ApiReportController@index');
+Route::post('device/register', 'Api\ApiDeviceController@register');
+Route::get('reports', 'Api\ApiReportController@index');

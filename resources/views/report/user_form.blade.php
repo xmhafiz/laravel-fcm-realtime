@@ -9,7 +9,6 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <form class="form-horizontal" method="post" action="{{ route('report.store') }}">
-
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Title</label>
                         <div class="col-sm-8">
@@ -48,7 +47,7 @@
                         </div>
                     </div>
                     <div class="alert alert-success" style="display:none">
-                      <strong>Thank you!</strong> Your report has been successfully submitted.
+                        <strong>Thank you!</strong> Your report has been successfully submitted.
                     </div>
                 </form>
             </div>

@@ -40,3 +40,14 @@ h3 {
 .huge {
     font-size: 40px;
 }
+
+
+.list-placeholder {
+    height:400px;
+}
+
+.list-content
+{
+    height:500px;
+    overflow:auto;
+}

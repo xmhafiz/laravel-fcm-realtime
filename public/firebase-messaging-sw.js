@@ -22,8 +22,8 @@ if (typeof importScripts == "function") {
 	messaging.setBackgroundMessageHandler(function(payload) {
 		console.log('[firebase-messaging-sw.js] Received background message ', payload);
 
-		// check payload and refresh list based on 'action'
-		reloadList()
+		// update dashboard
+		updateView(payload.data.item);
 	});
 }
 else {
@@ -33,7 +33,7 @@ else {
 	// listener on message receive forground
 	messaging.onMessage(function(payload) {
 		console.log("Message received. ", payload);
-		reloadList()
+		updateView(payload.data.item);
 	});
 
 	// request permission
@@ -74,6 +74,20 @@ else {
 		})
 		.catch(function(err) {
 			console.log('An error occurred while retrieving token. ', err);
+		});
+	}
+
+	function submitToken(token) {
+
+		var browser = window.navigator.userAgent;
+
+		// send firebase token to server for push notification
+		axios.post( "/api/device/register", { browser_info: browser, firebase_token: token })
+		.then(function( data ) {
+			console.log(data);
+		})
+		.catch(function(error) {
+			console.log(error)
 		});
 	}
 }
