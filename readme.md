@@ -13,7 +13,7 @@ It is basically a simple report monitoring with maps. So, user will submit the r
 - Copy `env.example` to `.env` and add your DB details
 - Migrate database `php artisan migrate`
 - Go to [Firebase Console](https://console.firebase.google.com/?pli=1) and add new project
-- Click on Setting icon > Project Setting > Cloud Message and copy the `Legacy server key` to be added in .env as `FIREBASE_KEY`
+- Click on Setting icon > Project Setting > Cloud Message and copy the `Legacy server key` to be added in .env as `FIREBASE_KEY`. Also update `messagingSenderId` in `public/firebase-messaging-sw.js`
 - Now your are ready to Go!. Take a look at route `/` for simulating Realtime Dashboard Report and `/report/submit` to add new report.
 
 ### License
