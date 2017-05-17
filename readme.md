@@ -2,6 +2,12 @@
 
 This project purposely created for [Laratalk #5](https://web.facebook.com/events/1813069609012345/) on Real-time Webapp using [JavaScript Firebase Cloud Messaging API](hhttps://firebase.google.com/docs/cloud-messaging/js/client).
 
+It is basically a simple report monitoring with maps. So, user will submit the report and the page will autmatically updated.
+
+### Requirement
+- PHP 5.6.4+ for Laravel 5.4
+- WebPush API only working on Chrome: 50+, Firefox: 44+, Opera Mobile: 37+ (supports [Service worker](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers#you_need_https))
+
 ### Setup
 - Run `composer install`
 - Copy `env.example` to `.env` and add your DB details
