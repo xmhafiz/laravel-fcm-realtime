@@ -43,7 +43,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-6">
-                            <button type="submit" class="btn btn-primary">Submit Now</button>
+                            <button id="submit-button" type="submit" class="btn btn-primary">Submit Now</button>
                         </div>
                     </div>
                     <div class="alert alert-success" style="display:none">
@@ -143,12 +143,14 @@ $(document).ready(function() {
         // clear state
         $('#error-messages').empty();
 
+        $('#submit-button').button('loading');
+
         // get submit url
         var url = $(this).attr('action');
 
         // setup form data
         var formData = new FormData(this);
-        console.log(formData);
+        console.log('saving..');
 
         // send post
         axios.post(url, formData)
@@ -159,12 +161,17 @@ $(document).ready(function() {
             // reset form
             $('form')[0].reset();
 
+            // remove loading
+            $('#submit-button').button('reset');
             // debug
-            console.log('saved successfully');
+            console.log('saved successful');
         })
         .catch(function (error) {
             // debug
             console.log(error);
+
+            // remove loading
+            $('#submit-button').button('reset');
 
             if (error.response) {
                 // bad request form
